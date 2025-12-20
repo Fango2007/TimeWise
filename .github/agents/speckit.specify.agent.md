@@ -54,12 +54,13 @@ Given that feature description, do this:
       - Find the highest number N
       - Use N+1 for the new branch number
 
-   d. Prepare the JSON argument in a shell-safe way (execute these commands):
+   d. Assign the exact user input $ARGUMENTS to a shell variable using a single-quoted heredoc. Do not modify it. Execute:
    ARGUMENTS=$(cat <<'JSON'
-   <JSON_PAYLOAD>
+   <PASTE THE USER INPUT ($ARGUMENTS) HERE VERBATIM>
    JSON
    )
-     - Do not wrap <JSON_PAYLOAD> in single quotes on one line.
+      **IMPORTANT**:
+     - Do not wrap $ARGUMENTS in single quotes on one line.
      - Do not use \' escaping tricks.
      - Keep the JSON exactly as-is (including newlines).
      - After creating ARGUMENTS, run `printf '%s' "$ARGUMENTS" | head -c 1 >/dev/null` to ensure it is set (no output).
