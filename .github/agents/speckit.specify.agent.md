@@ -54,7 +54,7 @@ Given that feature description, do this:
       - Find the highest number N
       - Use N+1 for the new branch number
 
-   d. Assign the exact user input `$ARGUMENTS` to a shell variable using a single-quoted heredoc. Do not modify it. Execute:**
+   d. Assign the exact user input `$ARGUMENTS` to a shell variable using a single-quoted heredoc. Do not modify it. Execute:
    ```bash
    ARGUMENTS=$(cat <<'JSON'
    <PASTE THE USER INPUT ($ARGUMENTS) HERE VERBATIM>
