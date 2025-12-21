@@ -54,18 +54,18 @@ Given that feature description, do this:
       - Find the highest number N
       - Use N+1 for the new branch number
 
-   d. Assign the exact user input `$ARGUMENTS` to a shell variable using a single-quoted heredoc. Do not modify it. Execute:
-   ```bash
-   ARGUMENTS=$(cat <<'JSON'
-   <PASTE THE USER INPUT ($ARGUMENTS) HERE VERBATIM>
-   JSON
-   )
-   ```
-      **IMPORTANT**:
-     - Do not wrap $ARGUMENTS in single quotes on one line.
-     - Do not use \' escaping tricks.
-     - Keep the JSON exactly as-is (including newlines).
-     - After creating ARGUMENTS, run `printf '%s' "$ARGUMENTS" | head -c 1 >/dev/null` to ensure it is set (no output).
+   d. Prepare the JSON argument and run the script in the SAME terminal block (do not split commands). Execute exactly this block:
+    ```bash
+    ARGUMENTS=$(cat <<'JSON' 
+    $ARGUMENTS 
+    JSON
+    )
+    printf '%s' "$ARGUMENTS" | head -c 1 >/dev/null .specify/scripts/bash/create-new-feature.sh --json "$ARGUMENTS" --number <N> --short-name "<SHORT_NAME>"
+    ```
+   **IMPORTANT**:
+   - Execute the block as-is, in one go.
+   - Do not reformat or escape the payload.
+   - Do not replace $ARGUMENTS inside the heredoc with anything else.
 
    e. Run the script `.specify/scripts/bash/create-new-feature.sh --json "$ARGUMENTS"` with the calculated number and short-name:
       - Pass `--number N+1` and `--short-name "your-short-name"` along with the feature description
